@@ -89,8 +89,8 @@ and open the template in the editor.
             <form  onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
                     <label>No Rekam Medis</label>
-                    <input type="text" class="form-control" name="noRM" placeholder="Masukan nomer rekam medis">        
-                </div>
+                    <input type="text" class="form-control" name="noRm" placeholder="Masukan nomer rekam medis">        
+               
                 <div class="form-group"> 
                     <label>Nama</label>
                     <input type="text" class="form-control" name="nama" placeholder="Masukan nama pasien">
@@ -113,6 +113,7 @@ and open the template in the editor.
                 </div>
 
                 <center><button type="submit" class="btn btn-outline-primary">Simpan</button></center>
+                </div>
             </form>
             <pre id="output">
             </pre>
@@ -120,7 +121,7 @@ and open the template in the editor.
         <script>
             function make_json(form) {
                 var json = {
-                    "noRM": form.noRm.value,
+                    "noRm": form.noRm.value,
                     "nama": form.nama.value,
                     "alamat": form.alamat.value,
                     "nik": form.nik.value,
@@ -128,10 +129,10 @@ and open the template in the editor.
                     "kelamin": form.kelamin.value
                 };
 
-                var html = JSON.stringify(json);
-                var Url = "http://localhost:8085/API_WEB/webresources/pasien/addPasien";
+                var html = JSON.stringify(json, 0, 100);
+                var url = "http://localhost:8085/API_WEB/webresources/pasien/addPasien";
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", Url, false);
+                xhr.open("POST", url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
                 document.getElementById("output").innerHTML = this.responseText;
