@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+     
+    <body>
+        <section class="spacer green">
+             <div class="container">
+       <center> <h2 id="demo">LOGIN</h2></center>
+        <div >
+            <br>
+            
+            <center> <input id="b" name = "b" placeholder="Username"></center> <br>
+            <center><input  type="password" id="a" name="a" placeholder="Password"></center> <br>
+            <center> <button type="button" onclick="loadDoc()">Login</button></center>
+        </div>
+
+        <script>
+            function loadDoc() {
+                var email = b.value;
+                var pw = a.value;
+               
+                var url = 'http://202.94.83.190:8080/165314063_RS_SERVICES202/webresources/user/login?email=' + email + '&password=' + pw;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if(user !== null){ 
+                            window.open("home_1.html", "_self");
+                        }else{
+                            alert("Login Gcagal");
+                        }
+                      
+                        document.getElementById("demo").innerHTML =
+                                this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+            
+        </script>
+             </div>
+</section>
+    </body>
+
+</html>

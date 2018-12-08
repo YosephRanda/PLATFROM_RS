@@ -52,16 +52,14 @@ and open the template in the editor.
                         <!-- navigation -->
                         <nav class="pull-right nav-collapse collapse">
                             <ul id="menu-main" class="nav">
-                                
-                               <li><a title="home" href="home.html">Home</a></li>
+
+                                <li><a title="home" href="home.html">Home</a></li>
                                 <li><a title="Dokter" href="Dokter.html">Dokter</a></li>
                                 <li><a title="klinik" href="klinik.html">Klinik</a></li>
                                 <li><a title="pasien" href="pasien.html">pasien</a></li>
-                                <li><a title="pendaftaran" href="pendaftaran.html">Pendaftaran</a></li>
-                                 <li><a title="Maps" href="maps.html">maps</a></li>
-                                 <li><a title="Antrian" href="DaftarAntrian.html">DaftarAntrian</a></li>
-                                <li><a title="Antrian" href="tambaAntrian.html">CariPasien</a></li>
                               
+                                <li><a title="Maps" href="maps.html">maps</a></li>
+                                <li><a title="contact" href="home.html#contact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -74,75 +72,47 @@ and open the template in the editor.
             <div class="container">
                 <div class="row">
                     <div class="span12 aligncenter flyUp">
-                        <h2 class="pagetitle"><b>Pendaftaran </b></h2>
+                        <h2 class="pagetitle"><b>Tambah Dokter </b></h2>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- end spacer section -->
-        <!-- section: team -->
-        <section id="maincontent" class="inner">
-            <div class="container">
-                
-           <div class="container form" >
-            <h2>Form Tambah Pasien</h2>
-            
-            <form  onsubmit="return make_json(this)" method="POST">
-                <div class="form-group">
-                    <label>No Rekam Medis</label>
-                    <input type="text" class="form-control" name="noRm" placeholder="Masukan nomer rekam medis">        
-               
-                <div class="form-group"> 
-                    <label>Nama</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Masukan nama pasien">
-                </div>
-                <div class="form-group"> 
-                    <label>Alamat</label>
-                    <input type="text" class="form-control" name="alamat" placeholder="Masukan alamat">
-                </div>
-                <div class="form-group"> 
-                    <label>NIK</label>
-                    <input type="text" class="form-control" name="nik" placeholder="Masukan NIK">
-                </div>
-                <div class="form-group"> 
-                    <label>Tanggal Lahir</label>
-                    <input type="text" class="form-control" name="tanggalLahir" placeholder="Masukan Tahun/Tgl/bulan">
-                </div>
-                <div class="form-group"> 
-                    <label>Kelamin</label>
-                    <input type="text" class="form-control" name="kelamin" placeholder="Masukan Jenis Kelamain">
-                </div>
+      
+        <section>
+            <div class="form-group">           
+                <form onsubmit="return make_json(this);" style="border:1px solid #ccc" method="POST">
+                    <div class="form-group"> 
+                        <label>Nama</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukan nama Dokter">
+                    </div>                    
+                    <div class="form-group"> 
+                        <label>Spesialis</label>
+                        <input type="text" class="form-control" name="spesialis" placeholder="Masukan Spesialis">
+                    </div>
+                    
+                    <center><button type="submit" class="btn btn-outline-primary" >Simpan</button></center>
 
-                <center><button type="submit" class="btn btn-outline-primary">Simpan</button></center>
-                </div>
-            </form>
-            <pre id="output">
-            </pre>
-     
-        <script>
-            function make_json(form) {
-                var json = {
-                    "noRm": form.noRm.value,
-                    "nama": form.nama.value,
-                    "alamat": form.alamat.value,
-                    "nik": form.nik.value,
-                    "tanggalLahir": form.tanggalLahir.value,
-                    "kelamin": form.kelamin.value
-                };
-
-                var html = JSON.stringify(json, 0, 100);
-                var url = "http://202.94.83.190:8080/165314063_RS_SERVICES202/webresources/pasien/addPasien";
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url, false);
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
-                document.getElementById("output").innerHTML = this.responseText;
-                return false;
-                 
-                  
-            }
-        </script>
-        </section>
+                </form>
+                <pre id="berhasil">
+  <script>
+      function make_json(form) {
+          var json = {
+              "nama":form.nama.value,
+              "spesialis": form.spesialis.value
+          };
+          var html = JSON.stringify(json, 0, 100);
+       //    var Url = "http://localhost:8084/API_WEB/webresources/dokter/addDokter/";
+          var Url = "http://202.94.83.190:8080/165314063_RS_SERVICES202/webresources/dokter/addDokter/";
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', Url, false);
+          xhr.setRequestHeader("Content-type", "application/json");
+          xhr.send(html);
+          document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
+          return false;
+      }
+    </script>
+  </pre></div>
+   </section>
 
         <footer>
             <div class="container">
